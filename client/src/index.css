@@ -14,3 +14,7 @@ body {
 .ui.search.users-search .ui.input {
   width: 100%;
 }
+
+.ui.table.users-list {
+  margin-top: 20px;
+}

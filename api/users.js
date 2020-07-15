@@ -47,8 +47,8 @@ router.get (
         try {
             const posts = await User.find()
                                     .sort({ _id: -1 })
-                                    .skip ( page ? (( page - 1 ) * USERLIST_LIMIT ) : 0 )
-                                    .limit ( USERLIST_LIMIT );
+                                    // .skip ( page ? (( page - 1 ) * USERLIST_LIMIT ) : 0 )
+                                    .limit ( USERLIST_LIMIT + ( page - 1 ) * USERLIST_LIMIT );
             res.json ( posts );
         }
         catch ( err ) {
