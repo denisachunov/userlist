@@ -1,14 +1,10 @@
-import React, { useContext, useRef, useCallback } from 'react';
+import React, { useContext } from 'react';
 import { UsersContext } from '../context/UsersContext';
 import { Table, Message, Dimmer, Loader } from 'semantic-ui-react';
 import ViewUser from '../components/ViewUser';
 
 export default () => {
     const { users, loading } = useContext ( UsersContext );
-    const observer = useRef();
-    const lastUserRef = useCallback ( node => {
-        console.log (node)
-    });
     return (
         <>
             <Dimmer active={loading}>
@@ -28,12 +24,8 @@ export default () => {
                         <Table.Body>
                             {
                                 users.map (({ _id, firstname, lastname, username, role }, index ) => {
-                                    const rowProps = { key: _id };
-                                    if ( users.length === index+1 ) {
-                                        rowProps.ref = lastUserRef;
-                                    }
                                     return (
-                                        <Table.Row {...rowProps}>
+                                        <Table.Row key={_id}>
                                             <Table.Cell>{`${firstname} ${lastname}`}</Table.Cell>
                                             <Table.Cell>{username}</Table.Cell>
                                             <Table.Cell>{role}</Table.Cell>
